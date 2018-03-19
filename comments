@@ -1,0 +1,13 @@
+
+    public class PrimaryAccount {
+
+        @OneToMany(mappedBy = "primaryAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+        @JsonIgnore
+        private List<PrimaryTransaction> primaryTransactionList;
+    }
+
+@JsonIgnore - обозначает, что когда мы будем выполнять серриализацию объекта класса PrimaryAccount Json, то мы этой аннотацией предотварщаем зацикливание данной операции.
+    Т.к. в PrimaryTransaction у нас есть поле primaryAccount.
+
+cascade = CascadeType.ALL - любые действия в объекте класса PrimaryAccount вызовут соответствующии действия в объектах типа PrimaryTransaction
+fetch = FetchType.LAZY - при instation объекта класса PrimaryAccount нам не нужно инстанировать объекты класса PrimaryTransaction до момента пока мы не будем их использовать
