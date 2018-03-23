@@ -1,6 +1,8 @@
 package com.mybankonline.userfront.controller;
 
 import com.mybankonline.userfront.dao.RoleDao;
+import com.mybankonline.userfront.domain.PrimaryAccount;
+import com.mybankonline.userfront.domain.SavingsAccount;
 import com.mybankonline.userfront.domain.security.UserRole;
 import com.mybankonline.userfront.domain.User;
 import com.mybankonline.userfront.service.UserService;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -61,4 +64,17 @@ public class HomeController {
         }
 
     }
+
+    @RequestMapping("/userFront")
+    public String userFont(Principal principal, Model model){
+        User user = userService.findByUsername(principal.getName());
+        PrimaryAccount primaryAccount = user.getPrimaryAccount();
+        SavingsAccount savingsAccount = user.getSavingsAccount();
+
+        model.addAttribute("primaryAccount", primaryAccount);
+        model.addAttribute("savingsAccount", savingsAccount);
+
+        return "userFront";
+    }
+
 }
