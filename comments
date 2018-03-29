@@ -15,3 +15,12 @@
 
 cascade = CascadeType.ALL - любые действия в объекте класса PrimaryAccount вызовут соответствующии действия в объектах типа PrimaryTransaction
 fetch = FetchType.LAZY - при instation объекта класса PrimaryAccount нам не нужно инстанировать объекты класса PrimaryTransaction до момента пока мы не будем их использовать
+
+
+
+to do
+1. Refactoring
+2. change findRecipientList in TransectinServiceImpl
+3. Cities to DB
+4. error handler
+5. check if enough
